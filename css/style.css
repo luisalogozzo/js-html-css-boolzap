@@ -8,6 +8,10 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.flex-row {
+  display: flex;
+}
+
 .float-left {
   float: left;
 }
@@ -64,11 +68,29 @@ body {
   background-color: #EAEAEA;
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5vw;
 }
 
 #header-top-left {
+
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
+}
+
+.avatar {
+  height: 90%;
+  width: auto;
+  border-radius: 50%;
+  padding-right: .7vw;
+}
+
+.icons i {
+  padding-right: .8vw;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 #header-notify {
@@ -92,16 +114,18 @@ body {
   border-radius: 50%;
 }
 
-#turn-on-notify p {
+#text p {
 font-size: 14px;
 font-weight: 500;
 }
-#turn-on-notify a {
-font-size: 12px;
-font-weight: 400;
 
-color: rgba(0, 0, 0, 0.5)
+#text a,
+small {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.4);
 }
+
 
 #chat-list-main {
   overflow-y: auto;
@@ -129,5 +153,24 @@ color: rgba(0, 0, 0, 0.5)
   height: 100%;
   width: 96%;
   border: 1px solid #F2F2F2;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+#chat-list ul li {
+  height: 75px;
+  padding: .7vw;
+  border-bottom: .4px solid rgba(0, 0, 0, 0.1);
+
+}
+
+#chat-list #text small {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.3);
 
 }
