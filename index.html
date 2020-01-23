@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="css/style.css">
   <title>Boolzap</title>
 </head>
@@ -16,18 +18,32 @@
 
   </div>
   <div class="container clearfix">
-    <section id="chat-list" class="float-left">
+    <section id="chat-list-section" class="float-left">
       <header id="chat-list-head">
-        <div class="header-top">
+        <div id="header-top-left" class="header-top">
 
         </div>
         <div id="header-notify">
+          <i class="fas fa-bell-slash"></i>
+          <div id="turn-on-notify">
+            <p>Ricevi notifiche di nuovi messaggi</p>
+            <a href="#">Attiva notifiche desktop</a>
+          </div>
 
         </div>
       </header>
+      <div id="chat-search">
+        <input type="text" class="fas" placeholder="&#xf002; Cerca o inizia una nuova chat" />
+      </div>
+      <main id="chat-list-main">
+
+        <div id="chat-list">
+
+        </div>
+      </main>
     </section>
     <section id="chat-msg" class="float-right">
-      <div id="chat-search">
+      <div class="header-top">
 
       </div>
 

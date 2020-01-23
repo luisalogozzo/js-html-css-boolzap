@@ -5,6 +5,7 @@
 }
 body {
   position: relative;
+  font-family: 'Roboto', sans-serif;
 }
 
 .float-left {
@@ -42,31 +43,91 @@ body {
   background-color: beige;
 }
 
-#chat-list {
+#chat-list-section {
+  display: flex;
+  flex-direction: column;
   width: 30%;
   height: 100%;
-  background-color: grey;
+  background-color: #FAFAFA;
 }
 #chat-msg {
   width: 70%;
   height: 100%;
-  background-color: yellow;
+  background-image: url(../img/sfondo.jpeg);
 }
-
+#chat-list-head {
+}
 
 .header-top {
   height: 60px;
   width: 100%;
   background-color: #EAEAEA;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#header-top-left {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
 }
 
 #header-notify {
+  display: flex;
+  align-items: center;
   height: 70px;
   width: 100%;
   background-color: #8ED9FD;
 }
-/* #header-search {
-  height: 27%;
-  width: 100%;
+
+#header-notify i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: .7vw;
+  color: #8ED9FD;
   background-color: white;
-} */
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#turn-on-notify p {
+font-size: 14px;
+font-weight: 500;
+}
+#turn-on-notify a {
+font-size: 12px;
+font-weight: 400;
+
+color: rgba(0, 0, 0, 0.5)
+}
+
+#chat-list-main {
+  overflow-y: auto;
+  flex-grow: 2;
+  background-color: #FAFAFA;
+}
+
+#chat-search {
+  height: 35px;
+  margin: .4vw;
+}
+
+#chat-search input {
+  padding: .6vw;
+ border: 0;
+ border: 1px solid #F2F2F2;
+ height: 30px;
+ width: 100%;
+ margin: auto;
+
+}
+
+#chat-list {
+  background-color: white;
+  height: 100%;
+  width: 96%;
+  border: 1px solid #F2F2F2;
+
+}
