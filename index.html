@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="css/style.css">
   <title>Boolzap</title>
@@ -30,7 +30,7 @@
         </div>
         <div id="header-notify">
           <i class="fas fa-bell-slash"></i>
-          <div id="text">
+          <div class="text">
             <p>Ricevi notifiche di nuovi messaggi</p>
             <a href="#">Attiva notifiche desktop</a>
           </div>
@@ -38,66 +38,77 @@
         </div>
       </header>
       <div id="chat-search">
-        <input type="text" class="fas" placeholder="&#xf002; Cerca o inizia una nuova chat" />
+        <div> <i class="fas fa-search"></i>
+
+        </div>
+        <input type="text"  placeholder="Cerca o inizia una nuova chat" />
       </div>
       <main id="chat-list-main">
 
         <div id="chat-list">
           <ul>
-            <li class="user">
+            <li class="user" data-contact='0'>
               <img class="avatar" src="img/avatar_1.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Michele</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='1'>
               <img class="avatar" src="img/avatar_2.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Fabio</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='2'>
               <img class="avatar" src="img/avatar_3.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Samuele</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='3'>
               <img class="avatar" src="img/avatar_4.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Alessandro B.</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='4'>
               <img class="avatar" src="img/avatar_5.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Alessandro L.</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='5'>
               <img class="avatar" src="img/avatar_6.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Claudia</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='6'>
               <img class="avatar" src="img/avatar_7.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Davide</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
-            <li class="user">
+            <li class="user" data-contact='7'>
               <img class="avatar" src="img/avatar_8.jpg" alt="">
-              <div id="text">
+              <div class="text">
               <p>Federico</p>
               <small>Non poteva essere altrimenti</small>
+              <span class="time">17.53</span>
               </div>
             </li>
           </ul>
@@ -108,9 +119,9 @@
       <div id="header-top-right" class="header-top">
         <div class="user">
           <img class="avatar" src="img/avatar_8.jpg" alt="">
-          <div id="text">
+          <div class="text">
             <p>Federico</p>
-            <small href="#">Ultimo accesso oggi alle 15.40</p>
+            <small>Ultimo accesso oggi alle 15.40</small>
          </div>
         </div>
          <div class="icons">
@@ -118,10 +129,218 @@
            <i class="fas fa-paperclip"></i>
            <i class="fas fa-ellipsis-v"></i>
          </div>
-
       </div>
 
+    <!-- messages -->
+      <ul class="chat-messages list-style-none clearfix active" data-contact='0'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='1'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='2'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='3'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='4'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='5'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='6'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+      <ul class="chat-messages list-style-none clearfix" data-contact='7'>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+        <li class="message sent">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+
+        </li>
+        <li class="message received">
+          <div class="msg-text">
+            <p>Ciao come stai?</p>
+            <i class="fas fa-angle-down"></i>
+          </div>
+          <time>22:48</time>
+        </li>
+      </ul>
+    <!-- /messages -->
+      <footer id="footer" class="header-top">
+        <i class="far fa-smile"></i>
+        <input id="send-msg" type="text" name="msg" placeholder="Scrivi un messaggio" value="">
+        <i id="enter" class="fas fa-paper-plane"></i>
+      </footer>
     </section>
+  </div>
+
+  <div id="template">
+    <li class="message">
+      <div class="msg-text">
+        <p class="text"></p>
+        <i class="fas fa-angle-down"></i>
+      </div>
+      <time class="msg-time"></time>
+    </li>
   </div>
 
 
