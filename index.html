@@ -34,15 +34,18 @@
             <p>Ricevi notifiche di nuovi messaggi</p>
             <a href="#">Attiva notifiche desktop</a>
           </div>
-
         </div>
       </header>
+
+      <!-- search -->
       <div id="chat-search">
         <div> <i class="fas fa-search"></i>
-
         </div>
-        <input type="text"  placeholder="Cerca o inizia una nuova chat" />
+        <input id="search-input" type="text" placeholder="Cerca o inizia una nuova chat" />
       </div>
+      <!-- /search -->
+
+      <!-- contacts -->
       <main id="chat-list-main">
 
         <div id="chat-list">
@@ -50,7 +53,7 @@
             <li class="user" data-contact='0'>
               <img class="avatar" src="img/avatar_1.jpg" alt="">
               <div class="text">
-              <p>Michele</p>
+              <p class="contact-name">Michele</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -58,7 +61,7 @@
             <li class="user" data-contact='1'>
               <img class="avatar" src="img/avatar_2.jpg" alt="">
               <div class="text">
-              <p>Fabio</p>
+              <p class="contact-name">Fabio</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -66,7 +69,7 @@
             <li class="user" data-contact='2'>
               <img class="avatar" src="img/avatar_3.jpg" alt="">
               <div class="text">
-              <p>Samuele</p>
+              <p class="contact-name">Samuele</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -74,7 +77,7 @@
             <li class="user" data-contact='3'>
               <img class="avatar" src="img/avatar_4.jpg" alt="">
               <div class="text">
-              <p>Alessandro B.</p>
+              <p class="contact-name">Alessandro B.</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -82,7 +85,7 @@
             <li class="user" data-contact='4'>
               <img class="avatar" src="img/avatar_5.jpg" alt="">
               <div class="text">
-              <p>Alessandro L.</p>
+              <p class="contact-name">Alessandro L.</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -90,7 +93,7 @@
             <li class="user" data-contact='5'>
               <img class="avatar" src="img/avatar_6.jpg" alt="">
               <div class="text">
-              <p>Claudia</p>
+              <p class="contact-name">Claudia</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -98,7 +101,7 @@
             <li class="user" data-contact='6'>
               <img class="avatar" src="img/avatar_7.jpg" alt="">
               <div class="text">
-              <p>Davide</p>
+              <p class="contact-name">Davide</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -106,7 +109,7 @@
             <li class="user" data-contact='7'>
               <img class="avatar" src="img/avatar_8.jpg" alt="">
               <div class="text">
-              <p>Federico</p>
+              <p class="contact-name">Federico</p>
               <small>Non poteva essere altrimenti</small>
               <span class="time">17.53</span>
               </div>
@@ -130,6 +133,7 @@
            <i class="fas fa-ellipsis-v"></i>
          </div>
       </div>
+    <!-- /contacts -->
 
     <!-- messages -->
       <ul class="chat-messages list-style-none clearfix active" data-contact='0'>
@@ -332,7 +336,7 @@
       </footer>
     </section>
   </div>
-
+  <!-- template -->
   <div id="template">
     <li class="message">
       <div class="msg-text">
@@ -342,7 +346,7 @@
       <time class="msg-time"></time>
     </li>
   </div>
-
+  <!-- /template -->
 
   <script src="js/script.js" charset="utf-8"></script>
 </body>

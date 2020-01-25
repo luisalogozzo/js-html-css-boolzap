@@ -24,7 +24,6 @@ $(document).ready(function() {
       $('#send-msg').val('')
       setTimeout(function(){
         receiveMessage()
-
        }, 1000);
     }
   }
@@ -41,5 +40,29 @@ $(document).ready(function() {
      newMsg.addClass('received');
      $('.chat-messages').append(newMsg);
   }
+
+  $(document).on('keydown', "#search-input", function() {
+    setTimeout(function(){
+      var text = $('#search-input').val().toLowerCase();
+      var trovato;
+        for (var i = 0; i < $('.contact-name').length; i++) {
+          trovato = $('.contact-name').eq(i).text().toLowerCase().search(text);
+          if (trovato == -1) {
+            $('.contact-name').eq(i).parents('li.user').addClass('hidden');
+          } else {
+            $('.contact-name').eq(i).parents('li.user').removeClass('hidden');
+          }
+        }
+        console.log($('.contact-name').text());
+
+    }, 1);
+  });
+
+
+
+
+
+
+
 
 });
