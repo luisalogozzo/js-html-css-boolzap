@@ -226,11 +226,13 @@ small {
 
 #chat-list {
   background-color: white;
-  height: 100%;
   width: 96%;
   border: 1px solid #F2F2F2;
 }
 
+
+
+.user-chat-active,
 .user {
   position: relative;
   display: flex;
@@ -266,23 +268,21 @@ small {
   width: 70%;
   position: fixed;
   bottom: 0;
-}
-
-#footer i {
-  font-size: 20px;
+  padding: .5vw 0;
 }
 
 #footer input {
   flex-grow: 2;
   height: 80%;
+}
+
+#footer i {
+  font-size: 20px;
   margin: 0 3vw;
 }
 
-#footer .far.fa-smile {
-  margin-left: 3vw;
-}
-#footer .fas.fa-paper-plane {
-  margin-right: 3vw;
+#footer #microfono {
+  padding: 0 3.125px;
 }
 
 #template {
@@ -291,4 +291,8 @@ small {
 
 .hidden {
   display: none;
+}
+
+.user-active {
+  background-color: #EAEBEB;
 }

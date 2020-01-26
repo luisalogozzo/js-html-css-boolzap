@@ -20,7 +20,7 @@ $(document).ready(function() {
       var time = hours + ':' + minutes;
       newMsg.find('.msg-time').text(time);
       newMsg.addClass('sent');
-      $('.chat-messages').append(newMsg);
+      $('.chat-messages.active').append(newMsg);
       $('#send-msg').val('')
       setTimeout(function(){
         receiveMessage()
@@ -38,7 +38,7 @@ $(document).ready(function() {
      var time = hours + ':' + minutes;
      newMsg.find('.msg-time').text(time);
      newMsg.addClass('received');
-     $('.chat-messages').append(newMsg);
+     $('.chat-messages.active').append(newMsg);
   }
 
   $(document).on('keydown', "#search-input", function() {
@@ -57,6 +57,53 @@ $(document).ready(function() {
 
     }, 1);
   });
+
+
+  $(document).on('keydown', "#send-msg", function() {
+    setTimeout(function(){
+
+      if ($('#send-msg').val().length > 0) {
+       $('#microfono').addClass('hidden');
+       $('#enter').removeClass('hidden');
+     } else {
+       $('#microfono').removeClass('hidden');
+       $('#enter').addClass('hidden');
+     }
+    }, 1);
+  });
+
+  $(document).on('click', ".user", function() {
+    $('.user').removeClass('user-active');
+    $(this).addClass('user-active');
+    var ChatActive = $(".chat-messages").eq($(this).index());
+    var imgActive;
+    var nameUserActive;
+
+    for (var i = 0; i < $('.user').length; i++) {
+      if ($('.user').eq(i).hasClass('user-active')) {
+        $('.chat-messages').removeClass('active');
+        ChatActive.addClass("active");
+        $('.user-chat-active').find('img').remove();
+        $('.user-chat-active').find('.text p').text('');
+
+        imgActive = $(this).find('img').clone();
+        $('.user-chat-active').prepend(imgActive);
+        nameUserActive = $(this).find('p').clone();
+        $('.user-chat-active p').append(nameUserActive);
+
+
+
+    }
+
+
+
+    }
+  });
+
+
+
+
+
 
 
 
