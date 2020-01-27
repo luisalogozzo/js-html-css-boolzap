@@ -67,10 +67,8 @@ body {
   background-image: url(../img/mine.jpg);
 }
 .chat-messages {
+  height: calc(100% - 120px - 3vw);
   overflow-y: scroll;
-}
-
-.chat-messages {
   display: none;
 }
 .chat-messages.active {
@@ -89,6 +87,7 @@ body {
 }
 
 .msg-text {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -295,4 +294,23 @@ small {
 
 .user-active {
   background-color: #EAEBEB;
+}
+
+
+.dropdown {
+  text-align: center;
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  background-color: white;
+  right: -8%;
+  top: 150%;
+}
+
+.dropdown p {
+  padding: 1vw 0;
+}
+
+.italic {
+  font-style: italic;
 }
