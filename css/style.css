@@ -95,10 +95,15 @@ body {
 }
 
 .msg-text i {
-  display: inline-block;
+  opacity: 0;
   padding-left: .7vw;
-  font-size: 11px;
+  font-size: 17px;
   color: rgba(0, 0, 0, 0.2);
+}
+.msg-text:hover i,
+.msg-text:active i,
+.msg-text:focus i {
+  opacity: 1;
 }
 
 .message time {
@@ -295,7 +300,6 @@ small {
 .user-active {
   background-color: #EAEBEB;
 }
-
 
 .dropdown {
   text-align: center;

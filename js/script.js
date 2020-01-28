@@ -4,6 +4,16 @@ $(document).ready(function() {
     SendMessage();
   });
 
+  //----------- invio messaggi con tasto enter
+    $(document).keypress(
+      function(event){
+      if (event.which == 13) {
+        SendMessage();
+      }
+    });
+
+  //---------------- cerca contatti nell'input search
+
   $(document).on('keyup', "#search-input", function() {
     var text = $('#search-input').val().toLowerCase().trim();
     var trovato;
@@ -17,6 +27,8 @@ $(document).ready(function() {
     }
   });
 
+
+//------------------- switch microfono/paperplane
   $(document).on('keyup', "#send-msg", function() {
     if ($('#send-msg').val().length > 0) {
      $('#microfono').addClass('hidden');
@@ -27,14 +39,7 @@ $(document).ready(function() {
      }
   });
 
-  $(document).keypress(
-    function(event){
-    if (event.which == 13) {
-      SendMessage();
-    }
-    }
-  );
-
+//------------- switch da una chat all'altra
   $(document).on('click', ".user", function() {
     $('.user').removeClass('user-active');
     $(this).addClass('user-active');
@@ -51,21 +56,28 @@ $(document).ready(function() {
     $('.user-chat-active p').append(nameUserActive);
   });
 
-    $(document).click(function(){
-    $(".dropdown").addClass('hidden');
-    });
+  // ----------------------------dropdown
 
-    $(document).on('click', ".fas.fa-angle-down", function(e) {
-      e.stopPropagation();
-      var ThisDropdown = $(this).parents('.message').find('.dropdown');
-      if (!ThisDropdown.hasClass('hidden')) {
-        ThisDropdown.addClass('hidden');
-      } else {
-        ThisDropdown.removeClass('hidden');
+  $(document).click(function(){
+  $('.chat-messages.active .message').find('.dropdown').remove();
+  });
+
+  $(document).on('click', ".fas.fa-angle-down", function(e) {
+    e.stopPropagation();
+    var ThisMessage = $(this).parents('.message');
+    if ($('.chat-messages.active .msg-text').find('div').hasClass('dropdown')) {
+      $('.chat-messages.active .msg-text').find('.dropdown').remove();
+    } else {
+       var DropdownClone = $('#template .dropdown').clone();
+       $(this).parents('.msg-text').append(DropdownClone);
       }
-    });
 
+
+  });
+
+//------------------------------ cancella messaggio
   $(document).on('click', "#remove-msg", function() {
+    console.log('stai cliccando');
     $(this).parents('.message').find('.text').text('Hai eliminato questo messaggio');
     $(this).parents('.message').find('.text').addClass('italic');
   });
@@ -115,7 +127,7 @@ function receiveMessage() {
 
 // funzione che scrolla
 function scrollMessage() {
-    var heightContainer = $('.chat-messages.active').height();
+    var heightContainer = $('.chat-messages.active').prop('scrollHeight');
     $('.chat-messages.active').scrollTop(heightContainer);
 }
 
