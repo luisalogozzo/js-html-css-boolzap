@@ -77,9 +77,9 @@ $(document).ready(function() {
 
 //------------------------------ cancella messaggio
   $(document).on('click', "#remove-msg", function() {
-    console.log('stai cliccando');
-    $(this).parents('.message').find('.text').text('Hai eliminato questo messaggio');
-    $(this).parents('.message').find('.text').addClass('italic');
+    $(this).parents('.message').remove();
+    // $(this).parents('.message').find('.text').text('Hai eliminato questo messaggio');
+    // $(this).parents('.message').find('.text').addClass('italic');
   });
 
 
