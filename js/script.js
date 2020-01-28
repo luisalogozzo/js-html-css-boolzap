@@ -41,12 +41,12 @@ $(document).ready(function() {
 
 //------------- switch da una chat all'altra
   $(document).on('click', ".user", function() {
-    $('.user').removeClass('user-active');
+    $('.user-active').removeClass('user-active');
     $(this).addClass('user-active');
     var ChatActive = $(".chat-messages").eq($(this).index());
     var imgActive;
     var nameUserActive;
-    $('.chat-messages').removeClass('active');
+    $('.chat-messages.active').removeClass('active');
     ChatActive.addClass("active");
     $('.user-chat-active').find('img').remove();
     $('.user-chat-active').find('.text p').text('');
@@ -59,17 +59,23 @@ $(document).ready(function() {
   // ----------------------------dropdown
 
   $(document).click(function(){
-  $('.chat-messages.active .message').find('.dropdown').remove();
+    $('.chat-messages.active .message').find('.dropdown').remove();
+    $('.msg-text i').removeClass('visible');
+
   });
 
   $(document).on('click', ".fas.fa-angle-down", function(e) {
     e.stopPropagation();
     var ThisMessage = $(this).parents('.message');
+
     if ($('.chat-messages.active .msg-text').find('div').hasClass('dropdown')) {
       $('.chat-messages.active .msg-text').find('.dropdown').remove();
+      $('.msg-text i').removeClass('visible');
     } else {
        var DropdownClone = $('#template .dropdown').clone();
        $(this).parents('.msg-text').append(DropdownClone);
+       $(this).addClass('visible');
+       console.log('dropdown');
       }
 
 
@@ -127,8 +133,8 @@ function receiveMessage() {
 
 // funzione che scrolla
 function scrollMessage() {
-    var heightContainer = $('.chat-messages.active').prop('scrollHeight');
-    $('.chat-messages.active').scrollTop(heightContainer);
+  var heightContainer = $('.chat-messages.active').prop('scrollHeight');
+  $('.chat-messages.active').scrollTop(heightContainer);
 }
 
 // funzione che aggiunge zero
