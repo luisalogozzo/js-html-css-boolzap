@@ -6,7 +6,14 @@
 body {
   font-size: 14px;
   position: relative;
-  font-family: 'Lato', sans-serif;
+  font-family: 'SF Display', sans-serif;
+  min-width: 664px;
+}
+
+@font-face {
+  font-family: "SF Display";
+  font-weight: 400;
+  src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
 }
 
 .list-style-none{
@@ -32,13 +39,13 @@ body {
 }
 
 #background-header {
-  height: 15vh;
+  height: 15.5vh;
   background-color: #009688;
 }
 
 #background-main {
   height: 85vh;
-  background-color: #DBDBD3;
+  background-color: #DBDBD4;
 }
 
 
@@ -47,14 +54,14 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 85vw;
+  width: 92vw;
   height: 95vh;
 }
 
 #chat-list-section {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 35%;
   height: 100%;
   background-color: #FAFAFA;
 }
@@ -62,7 +69,7 @@ body {
   margin-bottom: 3vw;
 }
 #chat-msg {
-  width: 70%;
+  width: 65%;
   height: 100%;
   background-image: url(../img/mine.jpg);
 }
@@ -87,6 +94,7 @@ body {
 }
 
 .msg-text {
+  text-align: left;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -110,10 +118,17 @@ i.visible {
   opacity: 1;
 }
 
-.message time {
-  display: block;
+.message span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   font-size: 9px;
   color: rgba(0, 0, 0, 0.2);
+}
+
+.message time {
+  margin-right: 3px;
+  font-size: 11px;
 }
 
 .message.sent {
@@ -138,57 +153,71 @@ i.visible {
 }
 
 #header-top-left {
-
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-
 }
+
 
 .avatar {
   height: 90%;
   width: auto;
   border-radius: 50%;
   padding-right: .7vw;
+  margin-left: .6vw;
 }
 
-.icons i {
-  padding-right: .8vw;
-  font-size: 20px;
-  color: rgba(0, 0, 0, 0.2);
+.icons {
+  padding-right: 18px;
+}
+
+.icons svg {
+  height: 24px;
+  width: 24px;
+  margin-left: 25px;
+  color: #919191;
 }
 
 #header-notify {
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 86px;
   width: 100%;
-  background-color: #8ED9FD;
+  background-color: #9CE1FE;
 }
 
-#header-notify i {
+#header-notify #bell {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: .7vw;
-  color: #8ED9FD;
-  background-color: white;
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
+  color: white;
+  background-color: #9CE1FE;
   border-radius: 50%;
 }
 
 .text p {
-font-size: 14px;
-font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  color: rgba(48, 48, 48, 0.96);
 }
 
-.text a,
+#header-notify a {
+  color: rgba(48, 48, 48, 0.96);
+  font-size: 14px;
+  line-height: 25px;
+
+  text-decoration: none;
+}
+
 small {
   font-size: 12px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.4);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 260px;
+  display: block;
 }
-
 
 #chat-list-main {
   overflow-y: scroll;
@@ -201,7 +230,8 @@ small {
   justify-content: flex-start;
   align-items: center;
   height: 35px;
-  margin: .4vw;
+  margin: .6vw;
+  margin-left: 1.3vw;
 }
 
 #chat-search i {
@@ -209,7 +239,7 @@ small {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 35px;
   padding: 0 1vw;
   background-color: white;
   border-top: 1px solid #F2F2F2;
@@ -226,9 +256,9 @@ small {
  border-top: 1px solid #F2F2F2;
  border-right: 1px solid #F2F2F2;
  border-bottom: 1px solid #F2F2F2;
- height: 30px;
- width: 85%;
- font-size: 12px;
+ height: 35px;
+ width: 88%;
+ font-size: 13px;
  border-radius: 0 15px 15px 0;
  color: rgba(0, 0, 0, 0.1);
  font-weight: 300;
@@ -237,19 +267,29 @@ small {
 
 #chat-list {
   background-color: white;
-  width: 96%;
   border: 1px solid #F2F2F2;
 }
 
+.user-on-the-top {
+  width: 50%;
+}
 
-
-.user-chat-active,
+.user-on-the-top,
 .user {
   position: relative;
   display: flex;
   align-items: center;
   height: 60px;
   padding: .5vw;
+}
+
+.user-hover {
+  background-color: #F5F5F5;
+}
+
+#chat-list ul {
+  display: flex;
+  flex-direction: column;
 }
 
 #chat-list ul li {
@@ -285,22 +325,25 @@ small {
 #footer input {
   flex-grow: 2;
   height: 80%;
-  border-radius: 15px;
   border: 0;
-  border-top: 1px solid #F2F2F2;
-  border-right: 1px solid #F2F2F2;
-  border-bottom: 1px solid #F2F2F2;
-  padding: 1vw;
+  border: 1px solid #F2F2F2;
+  border-radius: 21px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 9px 12px 11px 12px;
+  margin: 5px 10px;
 }
 
-#footer i {
+#footer input:focus {
+  outline: none;
+}
+
+#footer svg {
   font-size: 20px;
-  margin: 0 3vw;
+  margin: 0 1vw;
+  color: #919191;
 }
 
-#footer #microfono {
-  padding: 0 3.125px;
-}
 
 #template {
   display: none;
@@ -335,4 +378,17 @@ small {
 
 .italic {
   font-style: italic;
+}
+.order1 {
+  order: 1;
+}
+.order-1 {
+  order: -1;
+}
+
+@media screen and (max-width: 1439px)  {
+  .container {
+    width: 100%;
+    height: 100%;
+  }
 }

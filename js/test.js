@@ -1,9 +1,6 @@
 $(document).ready(function() {
   LastMessage();
 
-  var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
-  OrganizeChatList(lastHourText);
-
   $(document).on('click', '#enter', function() {
     SendMessage();
     LastMessage();
@@ -55,23 +52,21 @@ $(document).ready(function() {
   });
 
   //------------- switch da una chat all'altra
+  $(document).on('click', ".user", function() {
+    $('.user-active').removeClass('user-active');
+    var UserActive = $(this).addClass('user-active');
+    $('.chat-messages.active').removeClass('active');
+    var userData = $(this).attr('data-contact');
+    $('[data-contact~=' + userData + ']').addClass('active');
 
-    $(document).on('click', ".user", function() {
-      $('.user-active').removeClass('user-active');
-      var UserActive = $(this).addClass('user-active');
-      $('.chat-messages.active').removeClass('active');
-      var userData = $(this).attr('data-contact');
-      $('[data-contact~=' + userData + ']').addClass('active');
+    $('.user-on-the-top').find('img').remove();
+    $('.user-on-the-top').find('.text p').text('');
+    imgActive = $(this).find('img').clone();
+    $('.user-on-the-top').prepend(imgActive);
+    nameUserActive = $(this).find('p').clone();
+    $('.user-on-the-top p').append(nameUserActive);
 
-      $('.user-on-the-top').find('img').remove();
-      $('.user-on-the-top').find('.text p').text('');
-      imgActive = $(this).find('img').clone();
-      $('.user-on-the-top').prepend(imgActive);
-      nameUserActive = $(this).find('p').clone();
-      $('.user-on-the-top p').append(nameUserActive);
-
-
-    });
+  });
 
   // ----------------------------dropdown
 
@@ -116,20 +111,19 @@ function SendMessage() {
   if (text.length != 0) {
     var newMsg = $('#template .message').clone();
     newMsg.find('.text').text(text);
-    const date = moment().format("HH:mm");
-    console.log(date);
-    newMsg.find('.msg-time').text(date);
+    var data = new Date();
+    var hours = addZero(data.getHours());
+    var minutes = addZero(data.getMinutes());
+    var time = hours + ':' + minutes;
+    newMsg.find('.msg-time').text(time);
     newMsg.addClass('sent');
     $('.chat-messages.active').append(newMsg);
     $('#send-msg').val('');
-    LastHour();
-
     scrollMessage();
     setTimeout(function(){
       receiveMessage();
       LastMessage();
       LastHour()
-
     }, 1500);
   }
 }
@@ -138,8 +132,11 @@ function receiveMessage() {
    var text = CreateRandomSentences();
    var newMsg = $('#template .message').clone();
    newMsg.find('.text').text(text);
-   const date = moment().format("HH:mm");
-   newMsg.find('.msg-time').text(date);
+   var data = new Date();
+   var hours = addZero(data.getHours());
+   var minutes = addZero(data.getMinutes());
+   var time = hours + ':' + minutes;
+   newMsg.find('.msg-time').text(time);
    newMsg.addClass('received');
    $('.chat-messages.active').append(newMsg);
    scrollMessage();
@@ -147,45 +144,34 @@ function receiveMessage() {
 
 // funzione che controlla ultimo messaggio e fa l'append nella chat-list
 function LastMessage() {
-  if ($('.chat-messages.active li').is(':last-child')) {
+  if ($('.chat-messages li').is(':last-child')) {
     $('.user-active small').empty();
-    var lastMsgText = $('.chat-messages.active li:last-child').find('p').text();
+    var lastMsgText = $('.chat-messages li:last-child').find('p').text();
     var newText = $('.user-active small').append(lastMsgText);
   }
-  return newText
+  return console.log(newText)
 }
 
 // funzione che aggiorna l'ora
 function LastHour() {
-  if ($('.chat-messages.active li').is(':last-child')) {
+  if ($('.chat-messages li').is(':last-child')) {
     $('.user-active time').empty();
-    var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
-
+    var lastHourText = $('.chat-messages li:last-child').find('time').text();
 
     var newHour = $('.user-active time').append(lastHourText);
-    OrganizeChatList(lastHourText);
   }
-  return newHour
+  return console.log(newHour)
 }
 
 // funzione che aggiorna ordine chat-list in base all'ora
-function OrganizeChatList(lastHour) {
-  var ChatListLength = $('#chat-list ul li').length;
-  for (var i = 0; i < ChatListLength; i++) {
-    if (lastHour > $('[data-contact~=' + i + ']').find('time').text()) {
-      // if ($('#chat-list .user').hasClass('order-1')) {
-      //   $('#chat-list .user').removeClass('order-1')
-      // }
-      $('#chat-list .user').removeClass('order-1');
-      $('#chat-list .user').addClass('order1');
+// function OrganizeChatList(lastHour) {
+//   for (var i = 0; i < array.length; i++) {
+//     if (lastHour > $('[data-contact~=' + i + ']').find('time').text()) {
+//
+//     }
+//   }
+// }
 
-      $('.user-active').removeClass('order1');
-      $('.user-active').addClass('order-1');
-
-    }
-  }
-  return console.log($('[data-contact~=' + i + ']').find('time').text());
-}
 
 
 // funzione che scrolla
