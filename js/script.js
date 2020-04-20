@@ -1,10 +1,8 @@
 $(document).ready(function() {
-  LastMessage();
-  var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
 
   $(document).on('click', '#enter', function() {
     SendMessage();
-    LastMessage();
+
 
   });
 
@@ -13,8 +11,6 @@ $(document).ready(function() {
       function(event){
       if (event.which == 13) {
         SendMessage();
-        LastMessage();
-
       }
     });
 
@@ -79,7 +75,9 @@ $(document).ready(function() {
 
   });
 
+
   $(document).on('click', ".fas.fa-angle-down", function(e) {
+
     e.stopPropagation();
     var ThisMessage = $(this).parents('.message');
 
@@ -90,7 +88,6 @@ $(document).ready(function() {
        var DropdownClone = $('#template .dropdown').clone();
        $(this).parents('.msg-text').append(DropdownClone);
        $(this).addClass('visible');
-       console.log('dropdown');
       }
 
 
@@ -99,8 +96,10 @@ $(document).ready(function() {
 //------------------------------ cancella messaggio
   $(document).on('click', "#remove-msg", function() {
     $(this).parents('.message').remove();
-    // $(this).parents('.message').find('.text').text('Hai eliminato questo messaggio');
-    // $(this).parents('.message').find('.text').addClass('italic');
+    var ActUserDat = $('.user-active').attr('data-contact');
+    var lastMsg = $('.chat-messages.active').find('li:last-child .text').text();
+
+    Refresh(lastMsg, ActUserDat);
   });
 
 
@@ -115,46 +114,46 @@ function SendMessage() {
     var newMsg = $('#template .message').clone();
     newMsg.find('.text').text(text);
     const date = moment().format("HH.mm");
-    console.log(date);
     newMsg.find('.msg-time').text(date);
-    newMsg.addClass('sent');
+    newMsg = newMsg.addClass('sent');
+    var MsgText = newMsg.find('p').text()
     $('.chat-messages.active').append(newMsg);
+    console.log(MsgText);
+    $('#chat-list ul').prepend($('.user-active'));
     $('#send-msg').val('');
+    var ActUserDat = $('.user-active').attr('data-contact');
     LastHour();
-    OrganizeChatList();
+    LastMessage(MsgText, ActUserDat);
     scrollMessage();
     setTimeout(function(){
-      if ($('.chat-messages.active').attr('data-contact') == $('.user-active').attr('data-contact')) {
-        receiveMessage();
-        LastMessage();
-        LastHour()
-
-      }
+        receiveMessage(newMsg, ActUserDat);
     }, 1500);
   }
 }
 
-function receiveMessage() {
+function receiveMessage(msgSent, ActUserDat) {
    var text = CreateRandomSentences();
    var newMsg = $('#template .message').clone();
    newMsg.find('.text').text(text);
    const date = moment().format("HH.mm");
    newMsg.find('.msg-time').text(date);
    newMsg.addClass('received');
-   if ($('.chat-messages.active li:last-child').hasClass('sent')) {
-     $('.chat-messages.active').append(newMsg);
-   }
+   var MsgText = newMsg.find('p').text();
+   $(msgSent).parent('ul').append(newMsg);
    scrollMessage();
+   LastMessage(MsgText, ActUserDat);
+   LastHour()
 }
 
+
 // funzione che controlla ultimo messaggio e fa l'append nella chat-list
-function LastMessage() {
-  if ($('.chat-messages.active li').is(':last-child')) {
-    $('.user-active small').empty();
-    var lastMsgText = $('.chat-messages.active li:last-child').find('p').text();
-    var newText = $('.user-active small').append(lastMsgText);
+function LastMessage(MsgText, ActUserDat) {
+  var Users = $('#chat-list ul li');
+  for (var i = 0; i < Users.length; i++) {
+    if ($(Users[i]).attr('data-contact') == ActUserDat) {
+      $(Users[i]).find('small').html(MsgText);
+    }
   }
-    return newText
 }
 
 // funzione che aggiorna l'ora
@@ -162,20 +161,33 @@ function LastHour() {
   if ($('.chat-messages.active li').is(':last-child')) {
     $('.user-active time').empty();
     var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
+    // console.log(lastHourText);
     var newHour = $('.user-active time').append(lastHourText);
-    // OrganizeChatList();
   }
-  return newHour
 }
 
 // funzione che aggiorna ordine dei contatti in base all'ora
 function OrganizeChatList() {
   var ChatListLength = $('#chat-list ul li').length;
-  for (var i = 1; i < ChatListLength + 1; i++){
-    if ($('.user-active').find('time').text().replace('.', '') >= $('.user[data-contact~=' + i + ']').find('time').text().replace('.', '')) {
-      $('.user-active').insertBefore('#chat-list ul li:first-child');
+  var i = 0;
+  var UserActiveTime = $('.user-active').find('time').text().replace('.', '');
+  var UserTime;
+  do {
+    UserTime = $('.user').eq(i).find('time').text().replace('.', '');
+    if (UserActiveTime > UserTime) {
+      $('.user-active').insertBefore($('#chat-list ul .user').eq(i));
+      return;
     }
-  }
+    i++;
+  } while (i < ChatListLength);
+    $('.user-active').insertAfter('#chat-list ul li:last-child');
+}
+
+// funzione che refresha dopo la cancellazione dei messaggi
+function Refresh(MsgText, ActUserDat) {
+  LastHour();
+  LastMessage(MsgText, ActUserDat);
+  OrganizeChatList();
 }
 
 // funzione che scrolla
