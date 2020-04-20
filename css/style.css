@@ -158,8 +158,7 @@ i.visible {
 
 
 .avatar {
-  height: 90%;
-  width: auto;
+  width: 55px;
   border-radius: 50%;
   padding-right: .7vw;
   margin-left: .6vw;
@@ -316,7 +315,7 @@ small {
 
 
 #footer {
-  width: 70%;
+  width: 65%;
   position: fixed;
   bottom: 0;
   padding: .5vw 0;
@@ -378,12 +377,6 @@ small {
 
 .italic {
   font-style: italic;
-}
-.order1 {
-  order: 1;
-}
-.order-1 {
-  order: -1;
 }
 
 @media screen and (max-width: 1439px)  {

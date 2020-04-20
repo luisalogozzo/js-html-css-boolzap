@@ -1,8 +1,6 @@
 $(document).ready(function() {
   LastMessage();
-
   var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
-  OrganizeChatList(lastHourText);
 
   $(document).on('click', '#enter', function() {
     SendMessage();
@@ -116,20 +114,22 @@ function SendMessage() {
   if (text.length != 0) {
     var newMsg = $('#template .message').clone();
     newMsg.find('.text').text(text);
-    const date = moment().format("HH:mm");
+    const date = moment().format("HH.mm");
     console.log(date);
     newMsg.find('.msg-time').text(date);
     newMsg.addClass('sent');
     $('.chat-messages.active').append(newMsg);
     $('#send-msg').val('');
     LastHour();
-
+    OrganizeChatList();
     scrollMessage();
     setTimeout(function(){
-      receiveMessage();
-      LastMessage();
-      LastHour()
+      if ($('.chat-messages.active').attr('data-contact') == $('.user-active').attr('data-contact')) {
+        receiveMessage();
+        LastMessage();
+        LastHour()
 
+      }
     }, 1500);
   }
 }
@@ -138,10 +138,12 @@ function receiveMessage() {
    var text = CreateRandomSentences();
    var newMsg = $('#template .message').clone();
    newMsg.find('.text').text(text);
-   const date = moment().format("HH:mm");
+   const date = moment().format("HH.mm");
    newMsg.find('.msg-time').text(date);
    newMsg.addClass('received');
-   $('.chat-messages.active').append(newMsg);
+   if ($('.chat-messages.active li:last-child').hasClass('sent')) {
+     $('.chat-messages.active').append(newMsg);
+   }
    scrollMessage();
 }
 
@@ -152,7 +154,7 @@ function LastMessage() {
     var lastMsgText = $('.chat-messages.active li:last-child').find('p').text();
     var newText = $('.user-active small').append(lastMsgText);
   }
-  return newText
+    return newText
 }
 
 // funzione che aggiorna l'ora
@@ -160,33 +162,21 @@ function LastHour() {
   if ($('.chat-messages.active li').is(':last-child')) {
     $('.user-active time').empty();
     var lastHourText = $('.chat-messages.active li:last-child').find('time').text();
-
-
     var newHour = $('.user-active time').append(lastHourText);
-    OrganizeChatList(lastHourText);
+    // OrganizeChatList();
   }
   return newHour
 }
 
-// funzione che aggiorna ordine chat-list in base all'ora
-function OrganizeChatList(lastHour) {
+// funzione che aggiorna ordine dei contatti in base all'ora
+function OrganizeChatList() {
   var ChatListLength = $('#chat-list ul li').length;
-  for (var i = 0; i < ChatListLength; i++) {
-    if (lastHour > $('[data-contact~=' + i + ']').find('time').text()) {
-      // if ($('#chat-list .user').hasClass('order-1')) {
-      //   $('#chat-list .user').removeClass('order-1')
-      // }
-      $('#chat-list .user').removeClass('order-1');
-      $('#chat-list .user').addClass('order1');
-
-      $('.user-active').removeClass('order1');
-      $('.user-active').addClass('order-1');
-
+  for (var i = 1; i < ChatListLength + 1; i++){
+    if ($('.user-active').find('time').text().replace('.', '') >= $('.user[data-contact~=' + i + ']').find('time').text().replace('.', '')) {
+      $('.user-active').insertBefore('#chat-list ul li:first-child');
     }
   }
-  return console.log($('[data-contact~=' + i + ']').find('time').text());
 }
-
 
 // funzione che scrolla
 function scrollMessage() {
